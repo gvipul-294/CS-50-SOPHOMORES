@@ -39,9 +39,9 @@ sort(int values[], int n)
 {
   int in, out;
   for (out = 0; out < n-1; out++) {
-    
-    for (in = out; in < n; in++) {
     int check = 0;
+    for (in = out; in < n; in++) {
+    
       if (values[in] < values[out])
         {
           int temp = values[in];
