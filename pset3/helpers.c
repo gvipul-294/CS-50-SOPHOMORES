@@ -34,5 +34,27 @@ search(int value, int array[], int n)
   return false;
 }
 
-
+void 
+sort(int values[], int n)
+{
+  int in, out;
+  for (out = 0; out < n-1; out++) {
+    
+    for (in = out; in < n; in++) {
+    int check = 0;
+      if (values[in] < values[out])
+        {
+          int temp = values[in];
+	  values[in] = values[out];
+          values[out] = temp;
+          check = 1;
+        }
+    }
+    if (check == 0)
+      break;
+  }
+  for (int i = 0; i < n; i++)
+    printf("%d\n", values[i]);
+    return;
+}
 
