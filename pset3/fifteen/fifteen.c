@@ -249,3 +249,27 @@ bool move(int tile)
     
     return false;
 }
+
+/**
+ * Returns true if game is won (i.e., board is in winning configuration), 
+ * else false.
+ */
+bool won(void)
+{
+    // linear search through array and check if increments in order
+    int counter = 1;
+    
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == counter)
+                counter++;
+        } 
+    }
+    
+    if (counter == d*d && board[d-1][d-1] == 0)
+        return true;
+    else
+        return false;
+}
