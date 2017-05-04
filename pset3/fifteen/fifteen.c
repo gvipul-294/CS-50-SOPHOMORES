@@ -203,7 +203,7 @@ void draw(void)
     // Prints the board, but if the value is 0 print an underscore instead.
     for (int i = 0; i < d; i++)
     {
-        for (int j = 0; j < d; i++)
+        for (int j = 0; j < d; j++)
         {
             if (board[i][j] < 10) //formatting for single digits is different.
             {
