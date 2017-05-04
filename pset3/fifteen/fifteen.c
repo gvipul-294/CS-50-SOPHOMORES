@@ -224,6 +224,7 @@ void draw(void)
         printf("\n"); //space between each line
     }
 }
+
 /**
  * If tile borders empty space, moves tile and returns true, else
  * returns false. 
@@ -272,4 +273,51 @@ bool won(void)
         return true;
     else
         return false;
+}
+
+// linear searches for the selected tile's location. no need for faster search.
+void search(int tile)
+{
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == tile)
+            {
+                tile_i = i;
+                tile_j = j;
+            } 
+        }
+    }
+}
+
+// check if the blank tile is next to the tile
+bool legalmove(void)
+{
+    // check if on top row. If so check up for 0
+    if (tile_i > 0 && board[tile_i - 1][tile_j] == 0)
+        return true;
+    // bottom
+    if (tile_i < d-1 && board[tile_i + 1][tile_j] == 0)
+        return true;
+    // left
+    if (tile_j > 0 && board[tile_i][tile_j - 1] == 0)
+        return true;
+    // right
+    if (tile_j < d-1 && board[tile_i][tile_j + 1] == 0)
+        return true;
+    else
+        return false;
+}
+
+// swaps tile with blank tile
+void swaptile(tile)
+{
+    int temp = board[tile_i][tile_j];
+    board[tile_i][tile_j] = board[blank_i][blank_j];
+    board[blank_i][blank_j] = temp;
+    
+    // update location of blank tile
+    blank_i = tile_i;
+    blank_j = tile_j;
 }
