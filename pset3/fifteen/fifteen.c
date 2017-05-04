@@ -224,3 +224,28 @@ void draw(void)
         printf("\n"); //space between each line
     }
 }
+/**
+ * If tile borders empty space, moves tile and returns true, else
+ * returns false. 
+ */
+bool move(int tile)
+{
+    // check if tile actually exists
+    if (tile > (d*d) || tile < 1)
+        return false;
+    
+    // Linear search for the tile user gives us
+    search(tile);
+    
+    // Once tile has been found see if blank tile is adjacent to it
+    // Check if adjacent tile is a legit tile, then check if is blank
+    if (legalmove())
+    {
+        swaptile(tile); // if legal move swap blank tile with tile
+        return true;
+    }
+    else
+        return false;
+    
+    return false;
+}
