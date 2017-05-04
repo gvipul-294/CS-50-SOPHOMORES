@@ -194,3 +194,33 @@ void init(void)
     blank_i = d-1;
     blank_j = d-1;
 }
+
+/**
+ * Prints the board in its current state.
+ */
+void draw(void)
+{
+    // Prints the board, but if the value is 0 print an underscore instead.
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; i++)
+        {
+            if (board[i][j] < 10) //formatting for single digits is different.
+            {
+                if (board[i][j] == 0) //checking if value is 0 to print a blank tile.
+                {
+                    printf(" [_] ");
+                }
+                else
+                {
+                printf(" [%d] ", board[i][j]);
+                }
+            }
+            else
+            {
+                printf("[%d] ", board[i][j]);
+            }
+        }
+        printf("\n"); //space between each line
+    }
+}
