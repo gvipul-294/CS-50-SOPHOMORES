@@ -82,3 +82,32 @@ int main(int argc, char* argv[])
 
     // write outfile's BITMAPINFOHEADER
     fwrite(&bi_new, sizeof(BITMAPINFOHEADER), 1, outptr);
+    
+    // iterate over infile's scanlines
+    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
+    {
+        // each row will be printed out factor times
+        int rowcounter = 0;
+        
+        while (rowcounter < factor)
+        {
+            
+            // iterate over pixels in scanline
+            for (int j = 0; j < bi.biWidth; j++)
+            {
+                // temporary storage
+                RGBTRIPLE triple;
+                
+                // each pixel will be printed out factor times
+                int pixelcounter = 0;
+
+                // read RGB triple from infile
+                fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+            
+                // write RGB triple to outfile
+                while (pixelcounter < factor)
+                {
+                    fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+                    pixelcounter++;
+                }
+            }
