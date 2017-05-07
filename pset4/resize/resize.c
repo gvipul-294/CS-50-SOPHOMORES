@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
                 fputc(0x00, outptr);
             
             // seek back to the beginning of row in input file, but not after iteration of printing
-            if (rowcounter < (factor ))
+            if (rowcounter < (factor-1))
                 fseek(inptr, -(bi.biWidth * sizeof(RGBTRIPLE)), SEEK_CUR);
             
             rowcounter++;
