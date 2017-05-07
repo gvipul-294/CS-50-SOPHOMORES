@@ -54,3 +54,31 @@ int main(int argc, char* argv[])
     fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
     
     bi_new = bi;
+    // ensure infile is (likely) a 24-bit uncompressed BMP 4.0
+    if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || 
+        bi.biBitCount != 24 || bi.biCompression != 0)
+    {
+        fclose(outptr);
+        fclose(inptr);
+        fprintf(stderr, "Unsupported file format.\n");
+        return 4;
+    }
+
+    // set new width and height dimensions
+    bi_new.biWidth = bi.biWidth * factor;
+    bi_new.biHeight = bi.biHeight * factor;
+
+    // determine padding for scanlines
+    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int new_padding =  (4 - (bi_new.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+
+    // set new file size
+    bf_new.bfSize = 54 + (bi_new.biWidth * sizeof(RGBTRIPLE) + new_padding) * abs(bi_new.biHeight);
+    bi_new.biSizeImage = bf_new.bfSize - 54;
+    
+
+    // write outfile's BITMAPFILEHEADER
+    fwrite(&bf_new, sizeof(BITMAPFILEHEADER), 1, outptr);
+
+    // write outfile's BITMAPINFOHEADER
+    fwrite(&bi_new, sizeof(BITMAPINFOHEADER), 1, outptr);
