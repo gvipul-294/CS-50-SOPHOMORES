@@ -111,3 +111,28 @@ int main(int argc, char* argv[])
                     pixelcounter++;
                 }
             }
+            
+            // add new padding
+            for (int k = 0; k < new_padding; k++)
+                fputc(0x00, outptr);
+            
+            // seek back to the beginning of row in input file, but not after iteration of printing
+            if (rowcounter < (factor ))
+                fseek(inptr, -(bi.biWidth * sizeof(RGBTRIPLE)), SEEK_CUR);
+            
+            rowcounter++;
+        }
+        
+        // skip over padding, if any
+        fseek(inptr, padding, SEEK_CUR);
+    }
+    
+    // close infile
+    fclose(inptr);
+
+    // close outfile
+    fclose(outptr);
+
+    
+    return 0;
+}
