@@ -28,4 +28,11 @@
             // Close the file, if it is opened
             if (fw != NULL)
                 fclose(fw);
+                
+                char filename[8];
+            sprintf(filename, "%03d.jpg", counter);
+                
+            // Open a new JPEG file for writing
+            fw = fopen(filename, "w");
+            }
     
