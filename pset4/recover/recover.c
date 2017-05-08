@@ -34,5 +34,7 @@
                 
             // Open a new JPEG file for writing
             fw = fopen(filename, "w");
-            }
+            counter++;
+            
+        }
     
