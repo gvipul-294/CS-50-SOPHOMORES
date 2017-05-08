@@ -39,7 +39,7 @@
         }
         
          
-        if (fw == NULL)
+        if (fw != NULL)
             fwrite(buf, BLOCK_SIZE, 1, fw);
     }
     
