@@ -37,4 +37,17 @@
             counter++;
             
         }
+        
+         
+        if (fw == NULL)
+            fwrite(buf, BLOCK_SIZE, 1, fw);
+    }
+    
+    if (fw != NULL)
+        fclose(fw);
+    
+    fclose(f);
+ 
+    return 0;
+ } 
     
