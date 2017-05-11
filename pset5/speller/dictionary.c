@@ -178,7 +178,7 @@ bool unload(void)
             {
                 node* cursor = hashtable[index];
                 hashtable[index] = cursor->next;
-                
+                free(cursor);
             }
             
             // once hashtable is empty at index, go to next index
