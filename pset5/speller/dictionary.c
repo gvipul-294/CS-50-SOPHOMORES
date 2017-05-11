@@ -138,3 +138,17 @@ bool check(const char* word)
 /**
  * Returns number of words in dictionary if loaded else 0 if not yet loaded.
  */
+ 
+ unsigned int size(void)
+{
+    // TODO
+    // if dictionary is loaded, return number of words
+    if (dictionarySize > 0)
+    {
+        return dictionarySize;
+    }
+     
+    // if dictionary hasn't been loaded, return 0
+    else
+        return 0;
+}
