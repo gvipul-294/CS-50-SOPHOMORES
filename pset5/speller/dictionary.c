@@ -112,7 +112,11 @@ bool check(const char* word)
     // find what index of the array the word should be in
     int index = hash(temp);
     
-    
+    // if hashtable is empty at index, return false
+    if (hashtable[index] == NULL)
+    {
+        return false;
+    }
     
     // create cursor to compare to word
     node* cursor = hashtable[index];
